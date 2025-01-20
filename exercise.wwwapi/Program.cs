@@ -14,9 +14,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<StudentCollection>();
 builder.Services.AddSingleton<LanguageCollection>();
+builder.Services.AddSingleton<BookCollection>();
 
-builder.Services.AddScoped<IRepository<Student>, Repository<Student>>();
-builder.Services.AddScoped<IRepository<Language>, LanguageRepository<Language>>();
+
+builder.Services.AddScoped<StudentRepository>();
+builder.Services.AddScoped<LanguageRepository>();
+builder.Services.AddScoped<BookRepository>();
+
 
 var app = builder.Build();
 
@@ -30,6 +34,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.ConfigureLanguageEndpoints();
+app.ConfigureBookEndpoints();
 app.ConfigureStudentsEndpoints();
 
 

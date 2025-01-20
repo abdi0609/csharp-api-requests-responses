@@ -4,7 +4,7 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repository
 {
-    public class LanguageRepository<T>: IRepository<T> where T : Language
+    public class LanguageRepository
     {
         private LanguageCollection _languageCollection;
 
@@ -13,38 +13,35 @@ namespace exercise.wwwapi.Repository
             _languageCollection = LanguageCollection;
         }
 
-        public T AddEntity(T entity)
+        public Language AddEntity(Language entity)
         {
             _languageCollection.Add(entity);
             return entity;
         }
 
-        public T DeleteEntity(string name)
+        public Language DeleteEntity(string name)
         {
-            return (T)_languageCollection.Delete(name);
+            return _languageCollection.Delete(name);
         }
 
-        public List<T> GetCollection()
+        public List<Language> GetCollection()
         {
 
-            return _languageCollection.getAll().Cast<T>().ToList();
+            return _languageCollection.getAll();
 
 
         }
 
-        public T GetEntity(string name)
+        public Language GetEntity(string name)
         {
-            return (T)_languageCollection.GetLanguage(name);
+            return _languageCollection.GetLanguage(name);
         }
 
-        public T UpdateEntity(string name, string newname)
+        public Language UpdateEntity(string name, string newname)
         {
-            return (T)_languageCollection.UpdateLanguage(name, newname);
+            return _languageCollection.UpdateLanguage(name, newname);
         }
 
-        public T UpdateEntity(string name, string newfirstname, string newlastname)
-        {
-            throw new NotImplementedException();
-        }
+ 
     }
 }

@@ -28,21 +28,21 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        private static async Task<IResult> UpdateStudents(IRepository<Student> repository, string name,string firstname,string lastname)
+        private static async Task<IResult> UpdateStudents(StudentRepository repository, string name,string firstname,string lastname)
         {
             var student = repository.UpdateEntity(name, firstname, lastname);
             return Results.Ok(student);
 
         }
         [ProducesResponseType(StatusCodes.Status200OK)]
-        private static async Task<IResult> GetStudent(IRepository<Student> repository, string name)
+        private static async Task<IResult> GetStudent(StudentRepository repository, string name)
         {
             var student= repository.GetEntity(name);
             return Results.Ok(student);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        private static async Task<IResult> DeleteStudents(IRepository<Student> repository,string name)
+        private static async Task<IResult> DeleteStudents(StudentRepository repository,string name)
         {
             var deleted= repository.DeleteEntity(name);
 
@@ -50,7 +50,7 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        private static async Task<IResult> AddStudents(IRepository<Student> repository, Student student)
+        private static async Task<IResult> AddStudents(StudentRepository repository, Student student)
         {
             repository.AddEntity(student);
 
@@ -60,7 +60,7 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        private static async Task<IResult> GetStudents(IRepository<Student> repository)
+        private static async Task<IResult> GetStudents(StudentRepository repository)
         {
             var students = repository.GetCollection();
             return Results.Ok(students);

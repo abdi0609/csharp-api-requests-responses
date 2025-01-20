@@ -4,47 +4,45 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repository
 {
-    public class Repository<T> : IRepository<T> where T : Student
+    public class StudentRepository
     {
         private StudentCollection _studentCollection;
 
-        public Repository(StudentCollection studentCollection)
+        public StudentRepository(StudentCollection studentCollection)
         {
             _studentCollection = studentCollection;
         }
 
-        public T AddEntity(T entity)
+        public Student AddEntity(Student entity)
         {
             _studentCollection.Add(entity);
             return entity;
         }
 
-        public T DeleteEntity(string name)
+        public Student DeleteEntity(string name)
         {
-            return (T)_studentCollection.Delete(name);
+            return _studentCollection.Delete(name);
         }
 
-        public List<T> GetCollection()
+        public List<Student> GetCollection()
         {
-           
-            return _studentCollection.getAll().Cast<T>().ToList();
+
+            return _studentCollection.getAll();
        
            
         }
 
-        public T GetEntity(string name)
+        public Student GetEntity(string name)
         {
-            return (T)_studentCollection.GetStudent(name);
+            return _studentCollection.GetStudent(name);
         }
 
-        public T UpdateEntity(string name,string newfirstname,string newlastname)
+        public Student UpdateEntity(string name,string newfirstname,string newlastname)
         {
-            return (T)_studentCollection.UpdateStudent(name, newfirstname, newlastname);
+            return _studentCollection.UpdateStudent(name, newfirstname, newlastname);
         }
 
-        public T UpdateEntity(string name, string newnname)
-        {
-            throw new NotImplementedException();
-        }
+     
+        
     }
 }
